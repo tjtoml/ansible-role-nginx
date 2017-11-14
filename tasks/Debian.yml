@@ -1,0 +1,17 @@
+---
+- name: Add nginx signing key (Debian/Ubuntu)
+  apt_key:
+    url: http://nginx.org/keys/nginx_signing.key
+    state: present
+
+- name: Add nginx repository
+  apt_repository: repo={{item}} state=present update_cache=yes
+  with_items:
+    - 'deb http://nginx.org/packages/{{ ansible_distribution | lower }}/ {{ ansible_distribution_release }} nginx'
+    - 'deb-src http://nginx.org/packages/{{ ansible_distribution | lower }}/ {{ ansible_distribution_release }} nginx'
+
+- name: Install nginx
+  package:
+    name: nginx
+    state: latest
+# vim:ft=ansible:

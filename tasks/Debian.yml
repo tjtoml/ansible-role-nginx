@@ -19,4 +19,5 @@
   service: 
     name: nginx
     enabled: yes
+    state: started
 # vim:ft=ansible:

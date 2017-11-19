@@ -18,6 +18,6 @@
 - name: Start and enable nginx 
   service: 
     name: nginx
-    state: enabled
+    state: started
     enabled: yes
 # vim:ft=ansible:

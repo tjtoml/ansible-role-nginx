@@ -45,10 +45,9 @@
     - "/etc/nginx/conf.d/ssl.conf"
     - "/etc/nginx/conf.d/virtual.conf"
 
-- name: Start and enable nginx 
+- name: Enable nginx 
   service: 
     name: nginx
-    state: started
     enabled: yes
 
 

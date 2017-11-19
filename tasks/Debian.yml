@@ -15,9 +15,8 @@
     name: nginx
     state: latest
 
-- name: Start and enable nginx 
+- name: Enable nginx 
   service: 
     name: nginx
-    state: started
     enabled: yes
 # vim:ft=ansible:

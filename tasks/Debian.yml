@@ -14,4 +14,10 @@
   package:
     name: nginx
     state: latest
+
+- name: Start and enable nginx 
+  service: 
+    name: nginx
+    state: enabled
+    enabled: yes
 # vim:ft=ansible:

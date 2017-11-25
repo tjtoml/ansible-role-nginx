@@ -16,13 +16,29 @@
 
 - name: Add nginx yum repo
   yum_repository:
-    name: nginx repo
+    name: nginx-official-repo
     description: official nginx yum repo
     baseurl: 'http://nginx.org/packages/rhel/{{ ansible_distribution_major_version }}/x86_64'
     gpgcheck: false
     state: present
     enabled: yes
   when: ansible_distribution == "RedHat"
+
+- name: Allow http through the firewall (RHEL 7 only)
+  firewalld:
+    service: http
+    permanent: true
+    state: enabled
+    immediate: true
+  when: (ansible_distribution == "RedHat" and ansible_distribution_major_version == "7")
+
+- name: Allow https through the firewall (RHEL 7 only)
+  firewalld:
+    service: https
+    permanent: true
+    state: enabled
+    immediate: true
+  when: (ansible_distribution == "RedHat" and ansible_distribution_major_version == "7")
 
 - name: Install nginx
   yum:
